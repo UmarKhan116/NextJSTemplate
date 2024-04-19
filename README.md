@@ -6,7 +6,7 @@ You are expected to develop and deploy a demo of a Next.js admin dashboard with 
 
 **MANDATORY TASKS**
 
-1. Project Setup
+1. Project Setup DONE
 - *Fork the repository to your github and clone the forked repository to your desktop*
 - *Configure TypeScript support in the project. (DONE)*
 - *Install and configure Tailwind CSS for styling. (DONE)*
@@ -14,17 +14,17 @@ You are expected to develop and deploy a demo of a Next.js admin dashboard with 
 2. Authentication and authorization:
 - Implement a user authentication system using a library like NextAuth.js or JWT (JSON Web Tokens).
 
-3. Routing and navigation:
+3. Routing and navigation: DONE
 - Set up a navigation system using Next.js routing.
 - Create a navigation menu or sidebar to navigate between different sections of the admin dashboard. Two sample pages should be enough.
 - Highlight the active page or section in the navigation menu.
 
-4. State management with useState:
+4. State management with useState: DONE
 - Use the useState hook to manage local state within components.
 - Identify areas where state is needed, such as toggling a sidebar, managing form inputs, or controlling UI elements.
 - Implement state management using useContext hook or redux-toolkit.
 
-5. Dashboard overview:
+5. Dashboard overview: DONE
 - Fetch and display relevant data from https://dummyjson.com/products .
 - Design a dashboard overview page that displays key metrics (Average Rating of all the products), charts(count of products by category) and a table (table with columns title, description, price, category, brand, stock and thumbnail).
 - Use data visualization libraries like Chart.js or React-Vis to present charts and graphs.
@@ -32,17 +32,17 @@ You are expected to develop and deploy a demo of a Next.js admin dashboard with 
 6. *Data management and CRUD operations :*
 - Communicate with the backend API using libraries like Axios or Fetch.
   
-7. UI components and styling:
+7. UI components and styling: DONE
 - Build reusable UI components like tables, forms, modals, notifications, etc.
 - Apply responsive design principles to ensure a consistent experience across different devices.
 - Utilize Tailwind CSS utility classes and components for styling and layout.
 
-8. Data filtering and searching:
+8. Data filtering and searching: DONE
 - Implement filtering and searching functionality for data lists or tables (filter by category and brand).
 - Allow users to apply filters based on specific criteria and search for specific records.
 - Update the displayed data dynamically based on the applied filters or search query.
 
-9.   Deployment and optimization:
+9.   Deployment and optimization: DONE
 - Deploy the admin dashboard application to a hosting platform like Vercel.
 
 11.   Expected Best Practices
