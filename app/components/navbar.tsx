@@ -119,7 +119,7 @@ const Navbar = () => {
             </div>
             {session ? (
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-               <pre className=" text-gray-400">Hi {session.user?.name}</pre>
+               <pre className=" text-gray-400">Hi {session.user?.name?.split(" ")[0]}</pre>
                 <button
                   type="button"
                   className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"

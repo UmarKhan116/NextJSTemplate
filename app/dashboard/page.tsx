@@ -4,7 +4,6 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import Navbar from "@/app/components/navbar";
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/react";
 
 
 interface Product {
@@ -25,7 +24,6 @@ const Dashboard = () => {
   const [brandFilter, setBrandFilter] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const { data: session, status } = useSession();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -39,7 +37,7 @@ const Dashboard = () => {
     };
 
     fetchProducts();
-  }, []); // Run once on component mount
+  }, []); 
 
   useEffect(() => {
     if (products.length === 0) return;
@@ -48,7 +46,7 @@ const Dashboard = () => {
     const avg =
       ratings.reduce((acc, rating) => acc + rating, 0) / ratings.length;
     setAverageRating(avg);
-  }, [products]); // Recalculate average rating when products change
+  }, [products]); 
 
   useEffect(() => {
     if (products.length === 0) return;
@@ -87,7 +85,7 @@ const Dashboard = () => {
         },
       },
     });
-  }, [products]); // Update chart when products change
+  }, [products]);
 
   const filteredProducts = products.filter((product) => {
     const categoryMatch = !categoryFilter || product.category === categoryFilter;
@@ -111,7 +109,6 @@ const Dashboard = () => {
     <div className="flex flex-col h-screen">
       <Navbar />
       
-      {/* {session ? ( */}
         <div className="p-8">
         <h1 className="text-3xl font-bold mb-4">Dashboard Overview</h1>
         <div className="bg-white p-6 rounded-lg shadow-md">
@@ -227,10 +224,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      {/* ) : (
-       signIn()
-      )} */}
-          
+     
        
     </div>
   );

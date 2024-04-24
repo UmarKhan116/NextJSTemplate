@@ -11,7 +11,7 @@ You are expected to develop and deploy a demo of a Next.js admin dashboard with 
 - *Configure TypeScript support in the project. (DONE)*
 - *Install and configure Tailwind CSS for styling. (DONE)*
   
-2. Authentication and authorization:
+2. Authentication and authorization: DONE
 - Implement a user authentication system using a library like NextAuth.js or JWT (JSON Web Tokens).
 
 3. Routing and navigation: DONE
