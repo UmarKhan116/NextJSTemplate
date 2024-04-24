@@ -101,7 +101,7 @@ const Navbar = () => {
                       Dashboard
                     </div>
                   </Link>
-                  <Link href="/profile">
+                  <Link href='/profile'>
                     <div
                       className={`${
                         pathname === "/profile"

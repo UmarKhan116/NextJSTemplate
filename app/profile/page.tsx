@@ -1,22 +1,21 @@
-"use client "
+"use client";
+import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 const Profile = () => {
+  const { data: session } = useSession();
 
-  // const session = useSession()
-  
-  //  console.log(session)
+
   return (
     <div>
-        <Navbar/>
-      <div>This is a profile page</div>
+      <Navbar />
+      {
+        session ? (<div>This is a profile page</div>): signIn()
+      }
       
     </div>
   );
 };
 
 export default Profile;
-
-
-

@@ -23,7 +23,7 @@ export default function Login() {
 
   return (
     <>
-      Not signed in <br />
+      Not signed in <br></br>
       <button onClick={handleSignIn}>Sign in</button>
     </>
   );

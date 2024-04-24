@@ -4,6 +4,8 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import Navbar from "@/app/components/navbar";
 import Image from "next/image";
+import { signIn, useSession } from "next-auth/react";
+
 
 interface Product {
   title: string;
@@ -22,6 +24,9 @@ const Dashboard = () => {
   const [categoryFilter, setCategoryFilter] = useState<string>("");
   const [brandFilter, setBrandFilter] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const { data: session } = useSession();
+
 
   const filteredProducts = products.filter((product) => {
     debugger;
@@ -111,7 +116,9 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
-      <div className="p-8">
+      {
+        session ? (
+          <div className="p-8">
         <h1 className="text-3xl font-bold mb-4">Dashboard Overview</h1>
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-xl font-semibold mb-4">
@@ -226,6 +233,9 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+        ) : signIn()
+      }
+      
     </div>
   );
 };
