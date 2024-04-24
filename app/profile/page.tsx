@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Profile = () => {
   const { data: session, status } = useSession();
-
+console.log(session)
   if (status === "loading") {
     return <div>Loading...</div>;
   }
