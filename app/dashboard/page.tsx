@@ -27,19 +27,73 @@ const Dashboard = () => {
 
   const { data: session, status } = useSession();
 
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("https://dummyjson.com/products");
+        const products: Product[] = response.data.products;
+        setProducts(products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
+    fetchProducts();
+  }, []); // Run once on component mount
+
+  useEffect(() => {
+    if (products.length === 0) return;
+
+    const ratings = products.map((product) => product.rating);
+    const avg =
+      ratings.reduce((acc, rating) => acc + rating, 0) / ratings.length;
+    setAverageRating(avg);
+  }, [products]); // Recalculate average rating when products change
+
+  useEffect(() => {
+    if (products.length === 0) return;
+
+    const categories: { [key: string]: number } = {};
+    products.forEach((product) => {
+      if (categories[product.category]) {
+        categories[product.category]++;
+      } else {
+        categories[product.category] = 1;
+      }
+    });
+
+    const chartData = {
+      labels: Object.keys(categories),
+      datasets: [
+        {
+          label: "Products by Category",
+          data: Object.values(categories),
+          backgroundColor: "rgba(54, 162, 235, 0.2)",
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderWidth: 1,
+        },
+      ],
+    };
+
+    const ctx = document.getElementById("productChart") as HTMLCanvasElement;
+    new Chart(ctx, {
+      type: "bar",
+      data: chartData,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  }, [products]); // Update chart when products change
 
   const filteredProducts = products.filter((product) => {
-    debugger;
-    const categoryMatch =
-      !categoryFilter || product.category === categoryFilter;
+    const categoryMatch = !categoryFilter || product.category === categoryFilter;
     const brandMatch = !brandFilter || product.brand === brandFilter;
     const searchMatch =
-      !searchQuery ||
-      product.title.toLowerCase().includes(searchQuery.toLowerCase());
+      !searchQuery || product.title.toLowerCase().includes(searchQuery.toLowerCase());
     return categoryMatch && brandMatch && searchMatch;
   });
 
@@ -52,72 +106,6 @@ const Dashboard = () => {
     const brands = products.map((product) => product.brand);
     return Array.from(new Set(brands));
   };
-
-  useEffect(() => {
-    debugger;
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("https://dummyjson.com/products");
-        const products: Product[] = response.data.products;
-        setProducts(products);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    debugger;
-    if (products.length != 0) {
-      const ratings = products.map((product) => product.rating);
-      const avg =
-        ratings.reduce((acc, rating) => acc + rating, 0) / ratings.length;
-      setAverageRating(avg);
-    }
-  }, [products]);
-
-  useEffect(() => {
-      if (products.length === 0) return;
-
-      const categories: { [key: string]: number } = {};
-      products.forEach((product) => {
-        if (categories[product.category]) {
-          categories[product.category]++;
-        } else {
-          categories[product.category] = 1;
-        }
-      });
-
-    
-      const chartData = {
-        labels: Object.keys(categories),
-        datasets: [
-          {
-            label: "Products by Category",
-            data: Object.values(categories),
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
-            borderColor: "rgba(54, 162, 235, 1)",
-            borderWidth: 1,
-          },
-        ],
-      };
-  
-      const ctx = document.getElementById("productChart") as HTMLCanvasElement;
-      new Chart(ctx, {
-        type: "bar",
-        data: chartData,
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
-    
-  }, [products]);
 
   return (
     <div className="flex flex-col h-screen">
