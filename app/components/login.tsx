@@ -18,7 +18,7 @@ export default function Login() {
        <div className="text-center mt-8">
           <h1 className="text-2xl font-bold mb-4">Welcome to the home page</h1><br />
           <pre>Signed in as {session.user?.email}</pre>
-          <button onClick={handleSignOut}>Sign out</button>
+          <button  className="text-white bg-red-500 px-4 py-2 rounded-md hover:bg-red-600 transition duration-300" onClick={handleSignOut}>Sign out</button>
 
           </div>
         
