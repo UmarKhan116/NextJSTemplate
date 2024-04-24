@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Chart from "chart.js/auto";
 import Navbar from "@/app/components/navbar";
-
+import Image from "next/image";
 
 interface Product {
   title: string;
@@ -24,7 +24,7 @@ const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const filteredProducts = products.filter((product) => {
-    debugger
+    debugger;
     const categoryMatch =
       !categoryFilter || product.category === categoryFilter;
     const brandMatch = !brandFilter || product.brand === brandFilter;
@@ -110,7 +110,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <Navbar/>
+      <Navbar />
       <div className="p-8">
         <h1 className="text-3xl font-bold mb-4">Dashboard Overview</h1>
         <div className="bg-white p-6 rounded-lg shadow-md">
@@ -211,7 +211,12 @@ const Dashboard = () => {
                       <td className="px-6 py-4">{product.brand}</td>
                       <td className="px-6 py-4">{product.stock}</td>
                       <td className="px-6 py-4">
-                        <img src={product.thumbnail} alt="img" />
+                        {/* <img src={product.thumbnail} alt="img" /> */}
+                        <Image src={product.thumbnail} 
+                        alt="img" 
+                        width={100}
+                        height={100}
+                        />
                       </td>
                     </tr>
                   ))}
