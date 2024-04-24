@@ -1,24 +1,24 @@
-"use client"
+"use client";
 import Link from "next/link";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 
 const Navbar = () => {
-
   const [menuOpen, setMenuOpen] = useState(false);
   const [menu, setMenu] = useState(false);
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   const toggleMenu = () => {
-    debugger
-    setMenuOpen(prev => !prev);
-  }
+    debugger;
+    setMenuOpen((prev) => !prev);
+  };
 
-  const menuToggler = () =>{
-    debugger
-    setMenu(prev => !prev)
-  }
-   
+  const menuToggler = () => {
+    debugger;
+    setMenu((prev) => !prev);
+  };
 
   return (
     <nav className="bg-gray-800 p-4">
@@ -77,18 +77,36 @@ const Navbar = () => {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                <Link href="/">
-                    <div className={`${pathname === '/' ? 'bg-gray-900 text-white rounded-md' : ''} text-gray-300 px-3 py-2 text-sm font-medium`}>
+                  <Link href="/">
+                    <div
+                      className={`${
+                        pathname === "/"
+                          ? "bg-gray-900 text-white rounded-md"
+                          : ""
+                      } text-gray-300 px-3 py-2 text-sm font-medium`}
+                    >
                       Home
                     </div>
                   </Link>
                   <Link href="/dashboard">
-                    <div className={`${pathname === '/dashboard' ? 'bg-gray-900 text-white rounded-md' : ''} text-gray-300 px-3 py-2 text-sm font-medium`}>
+                    <div
+                      className={`${
+                        pathname === "/dashboard"
+                          ? "bg-gray-900 text-white rounded-md"
+                          : ""
+                      } text-gray-300 px-3 py-2 text-sm font-medium`}
+                    >
                       Dashboard
                     </div>
                   </Link>
                   <Link href="/profile">
-                    <div className={`${pathname === '/profile' ? 'bg-gray-900 text-white rounded-md' : ''} text-gray-300 px-3 py-2 text-sm font-medium`}>
+                    <div
+                      className={`${
+                        pathname === "/profile"
+                          ? "bg-gray-900 text-white rounded-md"
+                          : ""
+                      } text-gray-300 px-3 py-2 text-sm font-medium`}
+                    >
                       Profile
                     </div>
                   </Link>
@@ -97,93 +115,126 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <button
-                type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              >
-                <span className="absolute -inset-1.5"></span>
-                <span className="sr-only">View notifications</span>
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
+            {session ? (
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+               <pre className=" text-gray-400">Hi {session.user?.name}</pre>
+                <button
+                  type="button"
+                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-                  />
-                </svg>
-              </button>
-
-              <div className="relative ml-3">
-                <div>
-                  <button
-                    type="button"
-                    className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    id="user-menu-button"
-                    aria-expanded={menuOpen}
-                    aria-haspopup="true"
-                    onClick={toggleMenu}
+                  <span className="absolute -inset-1.5"></span>
+                  <span className="sr-only">View notifications</span>
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
                   >
-                    <span className="absolute -inset-1.5"></span>
-                    <span className="sr-only">Open user menu</span>
-                    <img
-                      className="h-8 w-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
                     />
-                  </button>
+                  </svg>
+                </button>
+
+                <div className="relative ml-3">
+                  <div>
+                    <button
+                      type="button"
+                      className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      id="user-menu-button"
+                      aria-expanded={menuOpen}
+                      aria-haspopup="true"
+                      onClick={toggleMenu}
+                    >
+                      <span className="absolute -inset-1.5"></span>
+                      <span className="sr-only">Open user menu</span>
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src={session.user?.image as string}
+                        alt=""
+                      />
+                    </button>
+                    
+                  </div>
+                  {menuOpen && (
+                    <div
+                      className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby="user-menu-button"
+                      tabIndex={-1}
+                    >
+                      {/* <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-0">Your Profile</a> */}
+                      <Link href="/profile">
+                        <div className="block px-4 py-2 text-sm text-gray-700">
+                          Profile
+                        </div>
+                      </Link>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-sm text-gray-700"
+                        role="menuitem"
+                        tabIndex={-1}
+                        id="user-menu-item-1"
+                      >
+                        Settings
+                      </a>
+                      <button
+                        onClick={() => signOut({ callbackUrl: "/" })}
+                        className="text-white bg-red-500 px-4 py-2 rounded-md hover:bg-red-600 transition duration-300"
+                      >
+                        Sign out
+                      </button>
+                      {/* <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-2">Sign out</a> */}
+                    </div>
+                  )}
                 </div>
-{menuOpen && (
-  <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex={-1}>
-            
-  <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-0">Your Profile</a>
-  <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-1">Settings</a>
-  <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-2">Sign out</a>
-</div>
-)}
-                
               </div>
-            </div>
+            ) : (
+              <button
+                onClick={() => signIn()}
+                className="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+              >
+                Sign in
+              </button>
+            )}
           </div>
         </div>
-{menu &&(
-  <div className="sm:hidden" id="mobile-menu">
-  <div className="space-y-1 px-2 pb-3 pt-2">
-    <a
-      href="/dashboard"
-      className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
-      aria-current="page"
-    >
-      Dashboard
-    </a>
-    <a
-      href="/profile"
-      className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-    >
-      Profile
-    </a>
-    <a
-      href="#"
-      className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-    >
-      Projects
-    </a>
-    <a
-      href="#"
-      className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-    >
-      Calendar
-    </a>
-  </div>
-</div>
-)}
-        
+        {menu && (
+          <div className="sm:hidden" id="mobile-menu">
+            <div className="space-y-1 px-2 pb-3 pt-2">
+              <a
+                href="/dashboard"
+                className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+                aria-current="page"
+              >
+                Dashboard
+              </a>
+              <a
+                href="/profile"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >
+                Profile
+              </a>
+              <a
+                href="#"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >
+                Projects
+              </a>
+              <a
+                href="#"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >
+                Calendar
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
     </nav>
   );
