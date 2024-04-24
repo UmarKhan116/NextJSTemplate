@@ -75,42 +75,45 @@ const Dashboard = () => {
   }, [products]);
 
   useEffect(() => {
-    if (products.length === 0) return;
+    if (typeof window !== 'undefined') {
+      if (products.length === 0) return;
 
-    const categories: { [key: string]: number } = {};
-    products.forEach((product) => {
-      if (categories[product.category]) {
-        categories[product.category]++;
-      } else {
-        categories[product.category] = 1;
-      }
-    });
-
-    const chartData = {
-      labels: Object.keys(categories),
-      datasets: [
-        {
-          label: "Products by Category",
-          data: Object.values(categories),
-          backgroundColor: "rgba(54, 162, 235, 0.2)",
-          borderColor: "rgba(54, 162, 235, 1)",
-          borderWidth: 1,
-        },
-      ],
-    };
-
-    const ctx = document.getElementById("productChart") as HTMLCanvasElement;
-    new Chart(ctx, {
-      type: "bar",
-      data: chartData,
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
+      const categories: { [key: string]: number } = {};
+      products.forEach((product) => {
+        if (categories[product.category]) {
+          categories[product.category]++;
+        } else {
+          categories[product.category] = 1;
+        }
+      });
+  
+      const chartData = {
+        labels: Object.keys(categories),
+        datasets: [
+          {
+            label: "Products by Category",
+            data: Object.values(categories),
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1,
+          },
+        ],
+      };
+  
+      const ctx = document.getElementById("productChart") as HTMLCanvasElement;
+      new Chart(ctx, {
+        type: "bar",
+        data: chartData,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
           },
         },
-      },
-    });
+      });
+    }
+   
   }, [products]);
 
   return (
