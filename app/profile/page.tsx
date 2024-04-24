@@ -1,7 +1,6 @@
 "use client";
 import Navbar from "../components/navbar";
 import { signIn, useSession } from "next-auth/react";
-import Image from "next/image";
 
 const Profile = () => {
   const { data: session, status } = useSession();
@@ -18,11 +17,12 @@ console.log(session)
         <h1 className="text-2xl font-bold mb-4">Welcome to your profile</h1>
         <div className="flex items-center justify-center">
           <div className="w-24 h-24 rounded-full overflow-hidden">
-            <Image
+          <img
               src={session.user?.image as string}
               alt="Profile Image"
-              width={200}
-              height={200}
+              width={128}
+              height={128}
+              className="rounded-full"
             />
           </div>
         </div>
