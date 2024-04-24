@@ -75,7 +75,6 @@ const Dashboard = () => {
   }, [products]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
       if (products.length === 0) return;
 
       const categories: { [key: string]: number } = {};
@@ -86,7 +85,8 @@ const Dashboard = () => {
           categories[product.category] = 1;
         }
       });
-  
+
+    // if (typeof window !== 'undefined') {
       const chartData = {
         labels: Object.keys(categories),
         datasets: [
@@ -112,7 +112,10 @@ const Dashboard = () => {
           },
         },
       });
-    }
+    // }
+  
+     
+    
    
   }, [products]);
 
