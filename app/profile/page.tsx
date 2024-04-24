@@ -10,12 +10,10 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
-      {/* {
+      {
         session ? (<div>This is a profile page</div>): signIn()
-      } */}
-      <div>
-        <h1>This is a profile page</h1>
-      </div>
+      }
+     
       
     </div>
   );
