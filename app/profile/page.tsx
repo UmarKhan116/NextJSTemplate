@@ -10,10 +10,10 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
-      {/* {
-        session ? (<div>This is a profile page</div>): signIn()
-      } */}
-     <div>This is a profile page</div>
+      {
+       typeof window !== "undefined" && session ? (<div>This is a profile page</div>): signIn()
+      }
+     {/* <div>This is a profile page</div> */}
       
     </div>
   );

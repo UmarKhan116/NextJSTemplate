@@ -86,7 +86,7 @@ const Dashboard = () => {
         }
       });
 
-    // if (typeof window !== 'undefined') {
+    
       const chartData = {
         labels: Object.keys(categories),
         datasets: [
@@ -112,11 +112,7 @@ const Dashboard = () => {
           },
         },
       });
-    // }
-  
-     
     
-   
   }, [products]);
 
   return (
