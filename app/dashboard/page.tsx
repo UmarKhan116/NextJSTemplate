@@ -25,7 +25,11 @@ const Dashboard = () => {
   const [brandFilter, setBrandFilter] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
 
 
   const filteredProducts = products.filter((product) => {

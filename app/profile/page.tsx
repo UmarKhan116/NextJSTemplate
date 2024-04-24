@@ -6,7 +6,6 @@ const Profile = () => {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
-    // Handle loading state
     return <div>Loading...</div>;
   }
 
