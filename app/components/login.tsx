@@ -14,10 +14,15 @@ export default function Login() {
 
   if (session) {
     return (
-      <>
-        Signed in as {session.user?.email} <br />
-        <button onClick={handleSignOut}>Sign out</button>
-      </>
+      
+       <div className="text-center mt-8">
+          <h1 className="text-2xl font-bold mb-4">Welcome to the home page</h1><br />
+          <pre>Signed in as {session.user?.email}</pre>
+          <button onClick={handleSignOut}>Sign out</button>
+
+          </div>
+        
+      
     );
   }
 
