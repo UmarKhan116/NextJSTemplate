@@ -5,7 +5,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 import Image from "next/image";
 
-
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -101,7 +100,7 @@ const Navbar = () => {
                       Dashboard
                     </div>
                   </Link>
-                  <Link href='/profile'>
+                  <Link href="/profile">
                     <div
                       className={`${
                         pathname === "/profile"
@@ -119,7 +118,9 @@ const Navbar = () => {
             </div>
             {session ? (
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-               <pre className=" text-gray-400">Hi {session.user?.name?.split(" ")[0]}</pre>
+                <pre className=" text-gray-400">
+                  Hi {session.user?.name?.split(" ")[0]}
+                </pre>
                 <button
                   type="button"
                   className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -154,19 +155,14 @@ const Navbar = () => {
                     >
                       <span className="absolute -inset-1.5"></span>
                       <span className="sr-only">Open user menu</span>
-                      {/* <img
-                        className="h-8 w-8 rounded-full"
+                      <img
                         src={session.user?.image as string}
-                        alt=""
-                      /> */}
-                       <Image src={session.user?.image as string} 
-                        className="h-8 w-8 rounded-full"
-                        alt="img" 
-                        width={100}
-                        height={100}
-                        />
+                        alt="Profile Image"
+                        width={32}
+                        height={32}
+                        className="rounded-full"
+                      />
                     </button>
-                    
                   </div>
                   {menuOpen && (
                     <div
