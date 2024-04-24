@@ -1,19 +1,23 @@
-"use client";
+"use client"
 import Navbar from "../components/navbar";
 import { signIn, useSession } from "next-auth/react";
 
 const Profile = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
+  if (status === "loading") {
+    // Handle loading state
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
       <Navbar />
-      {
-       session ? (<div>This is a profile page</div>): signIn()
-      }
-     {/* <div>This is a profile page</div> */}
-      
+      {session ? (
+        <div>This is a profile page</div>
+      ) : (
+       signIn()
+      )}
     </div>
   );
 };
