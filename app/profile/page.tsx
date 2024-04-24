@@ -12,22 +12,26 @@ const Profile = () => {
 
   return (
     <div>
-      <Navbar />
-      {session ? (
-        <div className="text-center mt-8">
-          <h1 className="text-2xl font-bold mb-4">Welcome to your profile</h1>
-          <Image src={session.user?.image as string} 
-                        className="h-8 w-8 rounded-full"
-                        alt="img" 
-                        width={100}
-                        height={100}
-                        />
-          <p className="text-lg">Logged in as {session.user?.email}</p>
+    <Navbar />
+    {session ? (
+      <div className="text-center mt-8">
+        <h1 className="text-2xl font-bold mb-4">Welcome to your profile</h1>
+        <div className="flex items-center justify-center">
+          <div className="w-24 h-24 rounded-full overflow-hidden">
+            <Image
+              src={session.user?.image as string}
+              alt="Profile Image"
+              width={200}
+              height={200}
+            />
+          </div>
         </div>
-      ) : (
-        signIn()
-      )}
-    </div>
+        <p className="text-lg mt-5">Logged in as {session.user?.email}</p>
+      </div>
+    ) : (
+      signIn()
+    )}
+  </div>
   );
 };
 
