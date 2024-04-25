@@ -134,14 +134,14 @@ const Dashboard = () => {
               {" "}
               {/* Right column */}
               <input
-                className="border border-gray-500 rounded-md p-1"
+                className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
                 type="text"
                 placeholder="Search by title"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />{" "}
               <select
-                className="border border-gray-500 rounded-md p-1"
+                className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
@@ -153,7 +153,7 @@ const Dashboard = () => {
                 ))}
               </select>{" "}
               <select
-                className="border border-gray-500 rounded-md p-1"
+                className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
                 value={brandFilter}
                 onChange={(e) => setBrandFilter(e.target.value)}
               >
