@@ -129,7 +129,7 @@ const Dashboard = () => {
             </div>
             <div
               className="w-full md:w-1/2 lg:pl-4 mt-4 md:mt-0"
-              style={{ overflowY: "scroll", maxHeight: "589px" }}
+              
             >
               {" "}
               {/* Right column */}
@@ -164,6 +164,7 @@ const Dashboard = () => {
                   </option>
                 ))}
               </select>
+              <div style={{ overflowY: "scroll", maxHeight: "589px" }}>
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
@@ -220,6 +221,8 @@ const Dashboard = () => {
                   ))}
                 </tbody>
               </table>
+              </div>
+             
             </div>
           </div>
         </div>
